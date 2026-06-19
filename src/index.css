@@ -1,0 +1,134 @@
+/* ─── Design tokens: Light mode (default) ─────────────────────────────���─ */
+:root {
+  --color-primary:      #255ad4;
+  --color-bg:           #F8F9FB;
+  --color-accent:       #2E7CF6;
+  --color-accent-hover: #1a6de0;
+  --color-border:       #DDE3ED;
+  --color-error:        #E03E3E;
+  --color-success:      #27AE60;
+  --color-text:         #2C3E50;
+  --color-muted:        #8A9BB0;
+  --color-row-hover:    #EEF3FB;
+  --color-white:        #ffffff;
+  --color-surface:      #ffffff;
+
+  --font-family:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-size-base: 14px;
+  --font-size-sm:   12px;
+  --font-size-h1:   24px;
+  --font-size-h2:   18px;
+  --font-size-h3:   16px;
+  --line-height:    1.5;
+
+  --header-height:     56px;
+  --panel-width:       360px;
+  --content-max-width: 1200px;
+  --sp:                8px;
+  --radius:            6px;
+  --shadow-modal:      0 8px 32px rgba(0,0,0,0.15);
+}
+
+/* ─── Dark mode overrides ──────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --color-primary:      #255ad4;
+  --color-bg:           #0f1117;
+  --color-accent:       #5a9eff;
+  --color-accent-hover: #4a8ef0;
+  --color-border:       #2a2d3a;
+  --color-error:        #ff6b6b;
+  --color-success:      #3ecf6d;
+  --color-text:         #dde3ef;
+  --color-muted:        #9ba5b4;
+  --color-row-hover:    #1a1f2e;
+  --color-white:        #1a1d27;
+  --color-surface:      #1a1d27;
+  --shadow-modal:       0 8px 32px rgba(0,0,0,0.5);
+}
+
+/* ─── Reset ───────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-width: 1280px;
+  transition: background 0.2s, color 0.2s;
+}
+
+a { color: var(--color-accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ─── Buttons ─────────────────────────────────────────────────────────── */
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  border-radius: var(--radius);
+  padding: calc(var(--sp)) calc(var(--sp) * 2);
+  border: none;
+  transition: background 0.15s, opacity 0.15s;
+}
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+button:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+.btn-primary   { background: var(--color-accent); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--color-accent-hover); }
+
+.btn-secondary {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+.btn-secondary:hover:not(:disabled) { background: var(--color-row-hover); }
+
+.btn-danger { background: var(--color-error); color: #fff; }
+.btn-danger:hover:not(:disabled) { filter: brightness(0.9); }
+
+/* ─── Inputs ──────────────────────────────────────────────────────────── */
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select {
+  height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0 12px;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--color-text);
+  background: var(--color-white);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+}
+input:focus, select:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(46,124,246,0.15);
+}
+input::placeholder { color: var(--color-muted); }
+
+/* ─── Skeleton ────────────────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position:  600px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--color-border) 25%, var(--color-row-hover) 50%, var(--color-border) 75%);
+  background-size: 600px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: 4px;
+}
+
+/* ─── Spinner ─────────────────────────────────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

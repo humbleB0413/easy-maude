@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About Easy MAUDE — a fast, free search tool for the FDA MAUDE medical device adverse event database. Built for regulatory affairs and medical device professionals." />
+  <title>About — Easy MAUDE</title>
+  <!-- AdSense: replace publisher ID when ready -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      background: #F8F9FB;
+      color: #2C3E50;
+    }
+    a { color: #2E7CF6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Header */
+    .site-header {
+      background: #255ad4;
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-header .brand {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .site-header .brand img { width: 36px; height: 36px; object-fit: contain; mix-blend-mode: screen; }
+    .site-header nav a {
+      color: rgba(255,255,255,0.85);
+      font-size: 14px;
+      margin-left: 24px;
+      text-decoration: none;
+    }
+    .site-header nav a:hover { color: #fff; text-decoration: underline; }
+
+    /* Main content */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #255ad4;
+      margin-bottom: 12px;
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 40px;
+      margin-bottom: 12px;
+      color: #2C3E50;
+    }
+    p { margin-bottom: 16px; color: #2C3E50; }
+    ul { padding-left: 24px; margin-bottom: 16px; }
+    li { margin-bottom: 8px; }
+
+    /* Feature cards */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .feature-card {
+      background: #fff;
+      border: 1px solid #DDE3ED;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .feature-card .icon { font-size: 24px; margin-bottom: 8px; }
+    .feature-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .feature-card p { font-size: 13px; color: #8A9BB0; margin-bottom: 0; }
+
+    /* CTA */
+    .cta {
+      background: #255ad4;
+      color: #fff;
+      border-radius: 8px;
+      padding: 32px;
+      text-align: center;
+      margin-top: 48px;
+    }
+    .cta h2 { color: #fff; margin-top: 0; margin-bottom: 12px; }
+    .cta p { color: rgba(255,255,255,0.85); margin-bottom: 20px; }
+    .cta a {
+      display: inline-block;
+      background: #fff;
+      color: #255ad4;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    .cta a:hover { background: #f0f4ff; }
+
+    /* Footer */
+    .site-footer {
+      background: #fff;
+      border-top: 1px solid #DDE3ED;
+      padding: 24px;
+      text-align: center;
+      font-size: 13px;
+      color: #8A9BB0;
+    }
+    .site-footer a { color: #8A9BB0; margin: 0 10px; }
+    .site-footer a:hover { color: #255ad4; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" class="brand">
+    <img src="/icon.png" alt="Easy MAUDE logo" />
+    Easy MAUDE
+  </a>
+  <nav>
+    <a href="/">Search</a>
+    <a href="/guide.html">Guide</a>
+    <a href="/about.html">About</a>
+    <a href="/privacy.html">Privacy</a>
+  </nav>
+</header>
+
+<main class="container">
+  <h1>About Easy MAUDE</h1>
+  <p style="font-size:17px; color:#8A9BB0; margin-bottom:32px;">
+    A free, browser-based search tool for the FDA MAUDE adverse event database — built for medical device professionals who need fast, flexible access to public MDR data.
+  </p>
+
+  <h2>What is Easy MAUDE?</h2>
+  <p>
+    Easy MAUDE is a web application that makes the FDA's MAUDE (Manufacturer and User Facility Device Experience) database searchable using a simple, readable query syntax. Instead of navigating complex government interfaces or writing raw Lucene queries, you type natural tag-based queries like <code style="background:#f0f4ff;padding:2px 6px;border-radius:4px;color:#2E7CF6;font-family:monospace;">brand:dexcom event:Malfunction</code> and get results immediately.
+  </p>
+  <p>
+    The tool runs entirely in your browser. No account required, no data sent to our servers. All search results and history are stored locally on your device using IndexedDB.
+  </p>
+
+  <h2>Key Features</h2>
+  <div class="features">
+    <div class="feature-card">
+      <div class="icon">🔍</div>
+      <h3>Simple Search Syntax</h3>
+      <p>Tag-based queries with AND/OR logic, date ranges, and phrase matching. No Lucene expertise needed.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">📦</div>
+      <h3>Large Dataset Handling</h3>
+      <p>Automatically splits date ranges and pages through up to hundreds of thousands of records without hitting API limits.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">📊</div>
+      <h3>Excel Export</h3>
+      <p>Download your search results as a .xlsx file for further analysis in Excel or any spreadsheet tool.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">📋</div>
+      <h3>Search History</h3>
+      <p>All results are saved locally in your browser. Revisit previous searches without running them again.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🌙</div>
+      <h3>Dark Mode</h3>
+      <p>Full dark mode support, automatically detects your system preference.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🔒</div>
+      <h3>Privacy First</h3>
+      <p>No login, no tracking. Your API key is stored encrypted in a browser cookie. Search data stays on your device.</p>
+    </div>
+  </div>
+
+  <h2>Who Is It For?</h2>
+  <p>Easy MAUDE was designed for professionals who regularly work with FDA regulatory data:</p>
+  <ul>
+    <li><strong>Regulatory Affairs specialists</strong> — conducting post-market surveillance and preparing regulatory submissions</li>
+    <li><strong>Medical device R&amp;D engineers</strong> — researching adverse events for competing or similar devices</li>
+    <li><strong>Quality and Safety teams</strong> — signal detection and risk analysis for device families</li>
+    <li><strong>Clinical researchers</strong> — reviewing real-world device performance data</li>
+    <li><strong>Healthcare attorneys and consultants</strong> — reviewing MDR reports for specific products</li>
+  </ul>
+
+  <h2>Data Source</h2>
+  <p>
+    All data is fetched directly from the <a href="https://open.fda.gov/apis/device/event/" target="_blank" rel="noopener">OpenFDA Device Adverse Event API</a> operated by the U.S. Food &amp; Drug Administration. Easy MAUDE does not modify or store this data on any server — it is retrieved in real time from the FDA's public API and displayed in your browser.
+  </p>
+  <p>
+    The MAUDE database contains reports submitted since 1992. Reports are submitted by device manufacturers, importers, and device user facilities as required by the FDA's Medical Device Reporting (MDR) regulations (21 CFR Part 803).
+  </p>
+
+  <h2>Technical Details</h2>
+  <p>
+    Easy MAUDE is a pure client-side React application with no backend infrastructure. It uses the browser's IndexedDB for result caching, encrypted cookies for settings, and the OpenFDA public API (CORS-enabled) for all data access. The source uses the MIT license and is open for inspection.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Questions, feedback, or bug reports are welcome at: <a href="mailto:humbleb0413@gmail.com">humbleb0413@gmail.com</a>
+  </p>
+
+  <div class="cta">
+    <h2>Start Searching MAUDE Data</h2>
+    <p>Free to use. No account required. Results in seconds.</p>
+    <a href="/">Open Easy MAUDE →</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>
+    <a href="/">Easy MAUDE</a>
+    <a href="/guide.html">Search Guide</a>
+    <a href="/about.html">About</a>
+    <a href="/privacy.html">Privacy Policy</a>
+  </p>
+  <p style="margin-top:10px;">
+    Data sourced from <a href="https://open.fda.gov/" target="_blank" rel="noopener">OpenFDA</a> (U.S. FDA Public API).
+    Easy MAUDE is not affiliated with or endorsed by the FDA.
+  </p>
+</footer>
+
+</body>
+</html>

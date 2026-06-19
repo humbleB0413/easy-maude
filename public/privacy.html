@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Privacy Policy for Easy MAUDE — how we handle your data, cookies, and browser storage." />
+  <title>Privacy Policy — Easy MAUDE</title>
+  <!-- AdSense: replace publisher ID when ready -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      background: #F8F9FB;
+      color: #2C3E50;
+    }
+    a { color: #2E7CF6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .site-header {
+      background: #255ad4;
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-header .brand {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .site-header .brand img { width: 36px; height: 36px; object-fit: contain; mix-blend-mode: screen; }
+    .site-header nav a {
+      color: rgba(255,255,255,0.85);
+      font-size: 14px;
+      margin-left: 24px;
+      text-decoration: none;
+    }
+    .site-header nav a:hover { color: #fff; text-decoration: underline; }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    h1 { font-size: 28px; font-weight: 700; color: #255ad4; margin-bottom: 8px; }
+    .updated { font-size: 13px; color: #8A9BB0; margin-bottom: 36px; }
+    h2 { font-size: 18px; font-weight: 600; margin-top: 36px; margin-bottom: 10px; color: #2C3E50; border-bottom: 1px solid #DDE3ED; padding-bottom: 6px; }
+    p { margin-bottom: 14px; }
+    ul { padding-left: 24px; margin-bottom: 14px; }
+    li { margin-bottom: 6px; }
+
+    .callout {
+      background: #f0f4ff;
+      border-left: 4px solid #255ad4;
+      border-radius: 0 6px 6px 0;
+      padding: 14px 18px;
+      margin: 24px 0;
+      font-size: 14px;
+    }
+
+    .site-footer {
+      background: #fff;
+      border-top: 1px solid #DDE3ED;
+      padding: 24px;
+      text-align: center;
+      font-size: 13px;
+      color: #8A9BB0;
+    }
+    .site-footer a { color: #8A9BB0; margin: 0 10px; }
+    .site-footer a:hover { color: #255ad4; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" class="brand">
+    <img src="/icon.png" alt="Easy MAUDE logo" />
+    Easy MAUDE
+  </a>
+  <nav>
+    <a href="/">Search</a>
+    <a href="/guide.html">Guide</a>
+    <a href="/about.html">About</a>
+    <a href="/privacy.html">Privacy</a>
+  </nav>
+</header>
+
+<main class="container">
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: June 2026</p>
+
+  <div class="callout">
+    <strong>Summary:</strong> Easy MAUDE runs entirely in your browser. We do not collect, transmit, or store any personal information on our servers. All data you generate (search results, history, settings) is stored locally on your device.
+  </div>
+
+  <h2>1. Information We Collect</h2>
+  <p>Easy MAUDE does not collect personal information. The application operates entirely client-side — there is no backend server that receives your data.</p>
+  <p>The following data is stored <strong>locally in your browser</strong> only:</p>
+  <ul>
+    <li><strong>OpenFDA API Key</strong> — If you enter an API key in Settings, it is stored in an encrypted browser cookie using AES encryption. It is never transmitted to any server other than the FDA's OpenFDA API (<code>api.fda.gov</code>).</li>
+    <li><strong>Search Preferences</strong> — Default result limit and sort order are stored in encrypted cookies on your device.</li>
+    <li><strong>Theme Preference</strong> — Your selected color theme (light or dark) is stored in <code>localStorage</code> under the key <code>easy_maude_theme</code>.</li>
+    <li><strong>Search Results and History</strong> — Search queries and their results are cached in your browser's IndexedDB database (<code>maude_search_db</code>). This data is never sent to any external server.</li>
+  </ul>
+
+  <h2>2. How We Use Your Information</h2>
+  <p>Since all data is stored locally, it is used solely to:</p>
+  <ul>
+    <li>Authenticate API requests to the OpenFDA public API</li>
+    <li>Remember your display and search preferences across sessions</li>
+    <li>Cache search results so you can revisit previous searches without re-running them</li>
+  </ul>
+
+  <h2>3. Third-Party Services</h2>
+
+  <h2 style="font-size:16px; border:none; margin-top:16px; padding:0;">3a. OpenFDA API (U.S. Food and Drug Administration)</h2>
+  <p>
+    All MAUDE data is retrieved from the <a href="https://open.fda.gov/" target="_blank" rel="noopener">OpenFDA public API</a>. When you perform a search, your query (not your identity) is sent to <code>api.fda.gov</code>. If you provide an API key, it is included in the request URL. Please refer to the <a href="https://open.fda.gov/privacy/" target="_blank" rel="noopener">OpenFDA Privacy Policy</a> for information on how the FDA handles API requests.
+  </p>
+
+  <h2 style="font-size:16px; border:none; margin-top:16px; padding:0;">3b. Google AdSense</h2>
+  <p>
+    This website may display advertisements served by Google AdSense. Google uses cookies and similar technologies to serve ads based on your visits to this and other websites. You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a>. For more information, see <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.
+  </p>
+  <p>
+    As required by Google AdSense policies, we disclose that third-party vendors (including Google) use cookies to serve ads on this site, and that users in the EEA may see ads based on their prior visits to this website or other websites.
+  </p>
+
+  <h2>4. Cookies</h2>
+  <p>Easy MAUDE uses the following cookies:</p>
+  <ul>
+    <li><strong><code>openfda_api_key</code></strong> — Stores your OpenFDA API key, AES-encrypted. Expires after 365 days.</li>
+    <li><strong><code>default_sort</code></strong> — Stores your preferred result sort order. Expires after 365 days.</li>
+  </ul>
+  <p>Google AdSense may set additional cookies for ad delivery and measurement. These are governed by Google's cookie policy.</p>
+  <p>You can clear all application cookies and local data at any time via the Settings panel → Advanced → Clear All History, or by clearing your browser's site data.</p>
+
+  <h2>5. Data Retention and Deletion</h2>
+  <p>Local data is retained until:</p>
+  <ul>
+    <li><strong>Search history</strong> — Automatically deleted when entries are older than 30 days and total stored data exceeds 200 MB. You can also delete entries individually or use Clear All History.</li>
+    <li><strong>Cookies</strong> — Expire after 365 days, or when cleared manually.</li>
+    <li><strong>localStorage</strong> — Retained until you clear your browser's local storage.</li>
+  </ul>
+  <p>Since no data is stored on our servers, there is nothing for us to delete on your behalf. To fully remove all Easy MAUDE data from your device, clear your browser's site data for this website.</p>
+
+  <h2>6. Children's Privacy</h2>
+  <p>Easy MAUDE is intended for use by professionals in the medical device and regulatory industries. It is not directed at children under the age of 13. We do not knowingly collect information from children.</p>
+
+  <h2>7. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. The "Last updated" date at the top of this page will reflect any changes. Continued use of Easy MAUDE after changes constitutes acceptance of the updated policy.</p>
+
+  <h2>8. Contact</h2>
+  <p>If you have questions about this Privacy Policy, please contact us at: <a href="mailto:humbleb0413@gmail.com">humbleb0413@gmail.com</a></p>
+</main>
+
+<footer class="site-footer">
+  <p>
+    <a href="/">Easy MAUDE</a>
+    <a href="/guide.html">Search Guide</a>
+    <a href="/about.html">About</a>
+    <a href="/privacy.html">Privacy Policy</a>
+  </p>
+  <p style="margin-top:10px;">
+    Data sourced from <a href="https://open.fda.gov/" target="_blank" rel="noopener">OpenFDA</a> (U.S. FDA Public API).
+    Easy MAUDE is not affiliated with or endorsed by the FDA.
+  </p>
+</footer>
+
+</body>
+</html>

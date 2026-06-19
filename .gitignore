@@ -1,0 +1,43 @@
+# Personal values (AdSense IDs, API keys) — never commit
+.env.local
+.env.*.local
+
+# Claude Code local settings — contains machine-specific paths
+.claude/
+
+# Developer notes
+memo.txt
+ask*.png
+
+# Documentation directories — not needed for deployment
+claude/
+document/
+
+# Markdown files (README.md is the only exception)
+*.md
+!README.md
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Build output and dependencies
+node_modules
+dist
+dist-ssr
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

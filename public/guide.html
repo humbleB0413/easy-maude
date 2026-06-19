@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="How to search the FDA MAUDE database with Easy MAUDE. Complete guide: tag syntax, date ranges, OR logic, product codes, and practical search examples for medical device professionals." />
+  <title>Search Guide — Easy MAUDE</title>
+  <!-- AdSense: replace publisher ID when ready -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      background: #F8F9FB;
+      color: #2C3E50;
+    }
+    a { color: #2E7CF6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .site-header {
+      background: #255ad4;
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-header .brand {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .site-header .brand img { width: 36px; height: 36px; object-fit: contain; mix-blend-mode: screen; }
+    .site-header nav a {
+      color: rgba(255,255,255,0.85);
+      font-size: 14px;
+      margin-left: 24px;
+      text-decoration: none;
+    }
+    .site-header nav a:hover { color: #fff; text-decoration: underline; }
+
+    /* Layout */
+    .page-wrapper {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      gap: 40px;
+    }
+    .toc {
+      width: 220px;
+      flex-shrink: 0;
+      padding-top: 40px;
+    }
+    .toc-inner {
+      position: sticky;
+      top: 24px;
+    }
+    .toc h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #8A9BB0; margin-bottom: 10px; }
+    .toc ul { list-style: none; padding: 0; }
+    .toc li { margin-bottom: 6px; }
+    .toc a { font-size: 13px; color: #8A9BB0; }
+    .toc a:hover { color: #255ad4; }
+    .content { flex: 1; min-width: 0; padding: 40px 0 80px; }
+
+    @media (max-width: 700px) {
+      .page-wrapper { flex-direction: column; }
+      .toc { width: 100%; padding-top: 0; }
+      .toc-inner { position: static; }
+    }
+
+    h1 { font-size: 28px; font-weight: 700; color: #255ad4; margin-bottom: 8px; }
+    .subtitle { font-size: 16px; color: #8A9BB0; margin-bottom: 36px; }
+    h2 { font-size: 20px; font-weight: 600; margin-top: 48px; margin-bottom: 14px; color: #2C3E50; scroll-margin-top: 20px; }
+    h3 { font-size: 16px; font-weight: 600; margin-top: 28px; margin-bottom: 10px; color: #2C3E50; }
+    p { margin-bottom: 16px; }
+    ul, ol { padding-left: 24px; margin-bottom: 16px; }
+    li { margin-bottom: 8px; }
+
+    /* Code blocks */
+    code {
+      font-family: 'Menlo', 'Consolas', monospace;
+      font-size: 13px;
+      background: #f0f4ff;
+      color: #2E7CF6;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .code-block {
+      background: #1e2230;
+      color: #e4e8f0;
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-family: 'Menlo', 'Consolas', monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 12px 0 20px;
+      overflow-x: auto;
+    }
+    .code-block .comment { color: #6b7a99; }
+
+    /* Tag table */
+    .tag-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin: 16px 0 24px;
+    }
+    .tag-table th {
+      background: #255ad4;
+      color: #fff;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+    }
+    .tag-table td { padding: 9px 14px; border-bottom: 1px solid #DDE3ED; vertical-align: top; }
+    .tag-table tr:nth-child(even) td { background: #fff; }
+    .tag-table tr:nth-child(odd) td { background: #f8f9fb; }
+
+    /* Callout */
+    .callout {
+      background: #f0f4ff;
+      border-left: 4px solid #255ad4;
+      border-radius: 0 6px 6px 0;
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    .callout.tip { border-color: #27AE60; background: #f0fdf4; }
+    .callout.warn { border-color: #e07e00; background: #fffbf0; }
+
+    /* Example card */
+    .example {
+      background: #fff;
+      border: 1px solid #DDE3ED;
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin: 12px 0;
+    }
+    .example .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: #8A9BB0; margin-bottom: 6px; }
+    .example .query { font-family: monospace; font-size: 14px; color: #255ad4; font-weight: 600; margin-bottom: 6px; }
+    .example .desc { font-size: 13px; color: #8A9BB0; }
+
+    /* CTA */
+    .cta {
+      background: #255ad4;
+      color: #fff;
+      border-radius: 8px;
+      padding: 28px;
+      text-align: center;
+      margin-top: 48px;
+    }
+    .cta a {
+      display: inline-block;
+      background: #fff;
+      color: #255ad4;
+      font-weight: 700;
+      padding: 10px 24px;
+      border-radius: 6px;
+      margin-top: 12px;
+      text-decoration: none;
+    }
+    .cta a:hover { background: #f0f4ff; }
+
+    .site-footer {
+      background: #fff;
+      border-top: 1px solid #DDE3ED;
+      padding: 24px;
+      text-align: center;
+      font-size: 13px;
+      color: #8A9BB0;
+    }
+    .site-footer a { color: #8A9BB0; margin: 0 10px; }
+    .site-footer a:hover { color: #255ad4; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" class="brand">
+    <img src="/icon.png" alt="Easy MAUDE logo" />
+    Easy MAUDE
+  </a>
+  <nav>
+    <a href="/">Search</a>
+    <a href="/guide.html">Guide</a>
+    <a href="/about.html">About</a>
+    <a href="/privacy.html">Privacy</a>
+  </nav>
+</header>
+
+<div class="page-wrapper">
+  <aside class="toc">
+    <div class="toc-inner">
+      <h4>On this page</h4>
+      <ul>
+        <li><a href="#what-is-maude">What is MAUDE?</a></li>
+        <li><a href="#getting-started">Getting Started</a></li>
+        <li><a href="#basic-syntax">Basic Syntax</a></li>
+        <li><a href="#tag-reference">Tag Reference</a></li>
+        <li><a href="#date-searching">Date Searching</a></li>
+        <li><a href="#or-queries">OR Queries</a></li>
+        <li><a href="#examples">Practical Examples</a></li>
+        <li><a href="#api-key">API Key</a></li>
+        <li><a href="#understanding-reports">Understanding Reports</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="content">
+    <h1>Easy MAUDE Search Guide</h1>
+    <p class="subtitle">Complete reference for searching the FDA MAUDE adverse event database.</p>
+
+    <!-- ─── What is MAUDE ─── -->
+    <h2 id="what-is-maude">What is the MAUDE Database?</h2>
+    <p>
+      <strong>MAUDE</strong> (Manufacturer and User Facility Device Experience) is the FDA's database of Medical Device Reports (MDRs). It contains adverse event reports submitted to the FDA by:
+    </p>
+    <ul>
+      <li><strong>Device manufacturers</strong> — required to report deaths, serious injuries, and malfunctions</li>
+      <li><strong>Device importers</strong> — required to report deaths and serious injuries</li>
+      <li><strong>Device user facilities</strong> (hospitals, nursing homes, etc.) — required to report deaths and serious injuries</li>
+      <li><strong>Voluntary reporters</strong> — patients, healthcare professionals, and consumers</li>
+    </ul>
+    <p>
+      MAUDE is a critical resource for post-market surveillance, regulatory submissions, safety signal detection, and competitor intelligence. The database contains millions of reports dating back to 1992.
+    </p>
+    <div class="callout">
+      <strong>Note:</strong> MAUDE reports are submitted by the listed reporter. FDA has not conducted independent verification of all data. Reports should be interpreted in the context of reporting practices and device use rates.
+    </div>
+
+    <!-- ─── Getting Started ─── -->
+    <h2 id="getting-started">Getting Started</h2>
+    <p>Easy MAUDE uses a simple <strong>tag:value</strong> syntax. You don't need to know OpenFDA's field names — just use intuitive tags like <code>brand</code>, <code>code</code>, or <code>event</code>.</p>
+    <p>Open the <a href="/">search page</a> and type your query in the search box. Results will appear as soon as the data is retrieved from the FDA API.</p>
+
+    <div class="callout tip">
+      <strong>Tip:</strong> If you don't specify a date, Easy MAUDE automatically searches the last 12 months. For broader searches, add an explicit date range.
+    </div>
+
+    <!-- ─── Basic Syntax ─── -->
+    <h2 id="basic-syntax">Basic Search Syntax</h2>
+    <p>The fundamental building block is a <strong>tag:value</strong> pair. Multiple pairs are combined with AND by default:</p>
+    <div class="code-block">brand:dexcom event:Malfunction<span class="comment">  → brand is dexcom AND event type is Malfunction</span></div>
+
+    <h3>Phrase Matching</h3>
+    <p>Multi-word values are automatically quoted for you — just type them naturally:</p>
+    <div class="code-block">manufacturer:boston scientific<span class="comment">  → searches for "boston scientific" (as a phrase)</span></div>
+
+    <h3>Case Sensitivity</h3>
+    <p>Most searches are case-insensitive. Exception: <code>code</code> and <code>udi</code> tags are automatically uppercased (FDA product codes use uppercase identifiers).</p>
+    <div class="code-block">code:frn<span class="comment">  → automatically becomes code:FRN</span></div>
+
+    <!-- ─── Tag Reference ─── -->
+    <h2 id="tag-reference">Tag Reference</h2>
+    <p>These are all supported search tags and their corresponding OpenFDA database fields:</p>
+    <table class="tag-table">
+      <thead>
+        <tr>
+          <th>Tag</th>
+          <th>What it searches</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>brand</code></td>
+          <td>Commercial brand name of the device (device.brand_name)</td>
+          <td><code>brand:dexcom</code></td>
+        </tr>
+        <tr>
+          <td><code>generic</code></td>
+          <td>Generic or technical device name (device.generic_name)</td>
+          <td><code>generic:catheter</code></td>
+        </tr>
+        <tr>
+          <td><code>manufacturer</code></td>
+          <td>Manufacturer name as reported (device.manufacturer_d_name)</td>
+          <td><code>manufacturer:medtronic</code></td>
+        </tr>
+        <tr>
+          <td><code>model</code></td>
+          <td>Device model number (device.model_number)</td>
+          <td><code>model:G7</code></td>
+        </tr>
+        <tr>
+          <td><code>code</code></td>
+          <td>FDA 3-letter product code — auto-uppercased (device.device_report_product_code)</td>
+          <td><code>code:FRN</code></td>
+        </tr>
+        <tr>
+          <td><code>udi</code></td>
+          <td>UDI Device Identifier barcode (device.udi_di) — auto-uppercased</td>
+          <td><code>udi:00380740006547</code></td>
+        </tr>
+        <tr>
+          <td><code>event</code></td>
+          <td>Event type: Malfunction, Injury, Death, Other (event_type)</td>
+          <td><code>event:Malfunction</code></td>
+        </tr>
+        <tr>
+          <td><code>date</code></td>
+          <td>Date FDA received the report, YYYYMMDD format (date_received)</td>
+          <td><code>date:20240101-20241231</code></td>
+        </tr>
+        <tr>
+          <td><code>event_date</code></td>
+          <td>Actual date the adverse event occurred (date_of_event)</td>
+          <td><code>event_date:20231015-</code></td>
+        </tr>
+        <tr>
+          <td><code>report</code></td>
+          <td>MDR report key — unique identifier (mdr_report_key)</td>
+          <td><code>report:3014449-2024</code></td>
+        </tr>
+        <tr>
+          <td><code>reporter</code></td>
+          <td>Reporter occupation code: P=Physician, N=Nurse, H=Hospital, etc. (reporter_occupation_code)</td>
+          <td><code>reporter:P</code></td>
+        </tr>
+        <tr>
+          <td><code>text</code></td>
+          <td>Full-text search in event descriptions and manufacturer narratives (mdr_text.text)</td>
+          <td><code>text:battery failure</code></td>
+        </tr>
+        <tr>
+          <td><code>problem</code></td>
+          <td>Product problem type (e.g. Failure to Operate, Leakage) (product_problems)</td>
+          <td><code>problem:Leakage</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ─── Date Searching ─── -->
+    <h2 id="date-searching">Date Searching</h2>
+    <p>Use the <code>date</code> tag with 8-digit date values (YYYYMMDD). If you omit the date tag entirely, the last 12 months are searched automatically.</p>
+
+    <h3>Date Range Formats</h3>
+    <div class="code-block">date:20240101-20241231<span class="comment">  → from Jan 1 to Dec 31, 2024</span>
+date:20240101-<span class="comment">         → from Jan 1, 2024 to today</span>
+date:-20241231<span class="comment">         → from the beginning of the database to Dec 31, 2024</span></div>
+
+    <div class="callout warn">
+      <strong>Large date ranges:</strong> Queries covering many years may retrieve hundreds of thousands of records. Easy MAUDE handles this automatically by splitting the date range into smaller windows and merging results — but large searches can take several minutes.
+    </div>
+
+    <!-- ─── OR Queries ─── -->
+    <h2 id="or-queries">OR Queries</h2>
+    <p>Use a pipe character <code>|</code> to combine multiple conditions with OR logic:</p>
+    <div class="code-block">brand:dexcom | brand:abbott<span class="comment">           → either Dexcom OR Abbott brand</span>
+brand:dexcom | brand:abbott | brand:libre<span class="comment">  → any of three brands</span></div>
+
+    <p>You can mix AND and OR in the same query. OR groups are evaluated first, then AND:</p>
+    <div class="code-block">(brand:dexcom | brand:abbott) event:Death<span class="comment">  → Dexcom or Abbott, with Death event type</span>
+<span class="comment">→ in Easy MAUDE syntax (no parentheses needed):</span>
+brand:dexcom event:Death | brand:abbott event:Death</div>
+
+    <!-- ─── Practical Examples ─── -->
+    <h2 id="examples">Practical Search Examples</h2>
+
+    <h3>Competitive Intelligence</h3>
+    <div class="example">
+      <div class="label">Find all malfunctions for a specific CGM brand in the last 2 years</div>
+      <div class="query">brand:dexcom event:Malfunction date:20230101-20241231</div>
+      <div class="desc">Combines brand filter + event type + explicit date range.</div>
+    </div>
+    <div class="example">
+      <div class="label">Compare adverse events across multiple insulin pump brands</div>
+      <div class="query">brand:medtronic | brand:insulet | brand:tandem</div>
+      <div class="desc">OR logic to pull reports for three brands in one search.</div>
+    </div>
+
+    <h3>Product Code Searches</h3>
+    <div class="example">
+      <div class="label">Search by FDA 3-letter product code</div>
+      <div class="query">code:FRN</div>
+      <div class="desc">FRN is the product code for continuous glucose monitors (CGMs). All device classes with this code will appear. Codes are automatically uppercased.</div>
+    </div>
+    <div class="example">
+      <div class="label">Product code + specific event type</div>
+      <div class="query">code:QBJ event:Death</div>
+      <div class="desc">All death reports for devices with product code QBJ (ventricular assist devices).</div>
+    </div>
+
+    <h3>Post-Market Surveillance</h3>
+    <div class="example">
+      <div class="label">Full-text search for a specific failure mode</div>
+      <div class="query">brand:heartware text:thrombosis</div>
+      <div class="desc">Finds reports where the event narrative mentions "thrombosis" for HeartWare devices.</div>
+    </div>
+    <div class="example">
+      <div class="label">Patient deaths reported by physicians</div>
+      <div class="query">code:FRN event:Death reporter:P</div>
+      <div class="desc">P = Physician reporter occupation code. Useful for filtering high-quality reports.</div>
+    </div>
+
+    <h3>Regulatory Submissions</h3>
+    <div class="example">
+      <div class="label">All events for a specific device model</div>
+      <div class="query">manufacturer:abbott model:FreeStyle</div>
+      <div class="desc">Useful for 510(k) substantial equivalence or PMA safety data compilations.</div>
+    </div>
+    <div class="example">
+      <div class="label">Long-range search for a legacy device</div>
+      <div class="query">brand:Bjork-Shiley event:Malfunction date:19920101-20001231</div>
+      <div class="desc">Searches the full MAUDE archive. Large results are handled via automatic date splitting.</div>
+    </div>
+
+    <!-- ─── API Key ─── -->
+    <h2 id="api-key">Getting an OpenFDA API Key</h2>
+    <p>By default, Easy MAUDE uses anonymous OpenFDA API access, which is limited to 1,000 requests per day across all users of the service. If you perform frequent or large searches, you should obtain a free personal API key:</p>
+    <ol>
+      <li>Visit <a href="https://open.fda.gov/apis/authentication/" target="_blank" rel="noopener">open.fda.gov/apis/authentication</a></li>
+      <li>Enter your email address and click "Get API Key"</li>
+      <li>Copy the key from the confirmation email</li>
+      <li>Open Easy MAUDE → Settings (gear icon) → API Configuration → paste your key</li>
+    </ol>
+    <p>With an API key, your daily limit is 120,000 requests — more than enough for any normal use.</p>
+
+    <!-- ─── Understanding Reports ─── -->
+    <h2 id="understanding-reports">Understanding MAUDE Report Fields</h2>
+
+    <h3>Event Types</h3>
+    <ul>
+      <li><strong>Malfunction</strong> — Device failure that did not cause or contribute to a serious patient outcome, but could if it recurred</li>
+      <li><strong>Injury</strong> — Device caused or contributed to a serious injury requiring medical or surgical intervention</li>
+      <li><strong>Death</strong> — Device caused or contributed to a patient death</li>
+      <li><strong>Other</strong> — Does not fall into the above categories</li>
+    </ul>
+
+    <h3>Reporter Occupation Codes</h3>
+    <ul>
+      <li><strong>P</strong> — Physician</li>
+      <li><strong>N</strong> — Nurse</li>
+      <li><strong>H</strong> — Hospital</li>
+      <li><strong>U</strong> — User Facility</li>
+      <li><strong>D</strong> — Distributor</li>
+      <li><strong>M</strong> — Manufacturer</li>
+      <li><strong>I</strong> — Importer</li>
+      <li><strong>C</strong> — Consumer</li>
+      <li><strong>O</strong> — Other Health Professional</li>
+    </ul>
+
+    <h3>MDR Report Key</h3>
+    <p>Each report has a unique MDR Report Key in the format <code>NNNNNNN-YYYY</code>. Use the <code>report</code> tag to look up a specific report if you know its key from another source.</p>
+
+    <!-- ─── FAQ ─── -->
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <h3>Why does my search show 0 results when I know reports exist?</h3>
+    <p>The most common causes: (1) The date range defaults to the last 12 months — try expanding it with an explicit <code>date:</code> tag. (2) Product code searches require exactly the FDA's 3-letter code — check it at <a href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfPCD/classification.cfm" target="_blank" rel="noopener">FDA's Product Code Database</a>. (3) Manufacturer names vary widely — try searching by brand or product code instead.</p>
+
+    <h3>How recent is the MAUDE data?</h3>
+    <p>The OpenFDA MAUDE database is updated weekly. There is typically a 1–2 week lag between a report being submitted and appearing in the database.</p>
+
+    <h3>Why does a large search take a long time?</h3>
+    <p>OpenFDA limits responses to 1,000 records per request and 26,000 records per date window. For queries that match more records, Easy MAUDE automatically splits the date range into progressively smaller windows and retrieves each one separately. A query returning 500,000 records may make 50–100 API calls and take 2–5 minutes. A progress bar and cancel button are available during the search.</p>
+
+    <h3>Can I export results to Excel?</h3>
+    <p>Yes. On the search results page, click the <strong>Export Excel</strong> button to download a .xlsx file containing all retrieved records with all available fields.</p>
+
+    <h3>Are the results stored?</h3>
+    <p>Yes, all search results are saved locally in your browser's IndexedDB. You can access previous searches from the Search History panel (Settings → Advanced → Search History). Results are automatically cleaned up after 30 days when storage exceeds 200 MB.</p>
+
+    <h3>Is my data sent to any server?</h3>
+    <p>No. Only your search query (not your identity) is sent to <code>api.fda.gov</code> when fetching data. No personal information is sent anywhere. See the <a href="/privacy.html">Privacy Policy</a> for full details.</p>
+
+    <div class="cta">
+      <strong style="font-size:16px; display:block; margin-bottom:8px;">Ready to search?</strong>
+      Open Easy MAUDE and start with a simple query like <code style="background:rgba(255,255,255,0.2);color:#fff;padding:2px 6px;border-radius:4px;">brand:dexcom</code>
+      <br/><a href="/">Open Easy MAUDE →</a>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">
+  <p>
+    <a href="/">Easy MAUDE</a>
+    <a href="/guide.html">Search Guide</a>
+    <a href="/about.html">About</a>
+    <a href="/privacy.html">Privacy Policy</a>
+  </p>
+  <p style="margin-top:10px;">
+    Data sourced from <a href="https://open.fda.gov/" target="_blank" rel="noopener">OpenFDA</a> (U.S. FDA Public API).
+    Easy MAUDE is not affiliated with or endorsed by the FDA.
+  </p>
+</footer>
+
+</body>
+</html>
