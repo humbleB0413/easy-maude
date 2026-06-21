@@ -31,6 +31,10 @@ export default function SearchPage() {
         Tip: Searches default to the <strong>last 12 months</strong>. Use <code style={{ fontFamily: 'monospace', fontSize: 11 }}>date:YYYYMMDD-YYYYMMDD</code> to specify a range, or <code style={{ fontFamily: 'monospace', fontSize: 11 }}>date:19900101-</code> for all records.
       </p>
 
+      <p style={{ marginTop: 'calc(var(--sp) * 1)', fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)' }}>
+        ⚠ Search results and history are saved <strong>only in this browser</strong> and may be lost if browser data is cleared, you use private/incognito mode, or Safari's 7-day inactivity policy applies.
+      </p>
+
       <div style={{ marginTop: 'calc(var(--sp) * 4)', padding: 'calc(var(--sp) * 2)', background: 'var(--color-white)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius)' }}>
         <p style={{ fontSize: 'var(--font-size-sm)', fontWeight: 600, marginBottom: 'var(--sp)', color: 'var(--color-text)' }}>Query syntax</p>
         <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', lineHeight: 2 }}>

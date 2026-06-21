@@ -120,6 +120,30 @@ export default function HistoryPage() {
         Clicking a row loads the stored results. Deleting removes the entry and all associated result data from local storage.
       </p>
 
+      <div style={{
+        marginBottom: 'calc(var(--sp) * 3)',
+        padding: 'calc(var(--sp) * 1.5) calc(var(--sp) * 2)',
+        background: 'var(--color-white)',
+        border: '1px solid #f59e0b',
+        borderLeft: '4px solid #f59e0b',
+        borderRadius: 'var(--radius)',
+        fontSize: 'var(--font-size-sm)',
+      }}>
+        <p style={{ fontWeight: 600, color: '#b45309', marginBottom: 'calc(var(--sp) * 0.5)' }}>
+          ⚠ Search history is stored locally in your browser only.
+        </p>
+        <p style={{ color: 'var(--color-muted)', lineHeight: 1.7, margin: 0 }}>
+          History may be permanently lost in the following cases:
+        </p>
+        <ul style={{ color: 'var(--color-muted)', lineHeight: 1.9, margin: 'calc(var(--sp) * 0.5) 0 0 calc(var(--sp) * 2.5)', padding: 0 }}>
+          <li>Private / Incognito browsing session ends</li>
+          <li>Browser cache or site data is manually cleared</li>
+          <li>Safari: automatic deletion after <strong>7 days of no visits</strong> (ITP policy)</li>
+          <li>Device storage is full — browser may evict data without notice</li>
+          <li>App auto-cleanup: entries older than 30 days are removed when total stored data exceeds 200 MB</li>
+        </ul>
+      </div>
+
       {loading && <p style={{ color: 'var(--color-muted)', padding: 'calc(var(--sp) * 4)' }}>Loading…</p>}
       {error   && <ErrorInline message={error} onRetry={load} />}
 
